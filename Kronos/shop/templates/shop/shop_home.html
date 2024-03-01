@@ -1,0 +1,49 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Магазин{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <h1>Магазин</h1>
+        <form action="{% url 'search_shop' %}" method="get">
+            <div class="d-flex align-items-center">
+                <input type="search" class="search-shop form-control form-control-lg" name="q" placeholder="Поиск">
+                <button type="submit" class="btn-shop btn btn-primary"></button>
+            </div>
+        </form>
+         {% if page_obj %}
+            {% for item in page_obj.object_list %}
+                <div class="alert alert-warning">
+                    <p class="p-players">Название: {{ item.name }}</p>
+                    <p class="p-players">Описание: {{ item.description }} </p>
+                    <p class="p-players">Цена: {{ item.price }} ₽</p>
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}" class="im">
+                    <a href="{% url 'shop-detail' item.id %}" class="btn btn-warning" style="display: block">Подробнее</a>
+                </div>
+            {% endfor %}
+            {% if page_obj.has_other_pages %}
+                <div class="">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
+                    {% endif %}
+
+                    {% for page_number in page_obj.paginator.page_range %}
+                        {% if page_obj.number == page_number %}
+                            <button class="btn btn-outline-primary active">
+                                <span>{{ page_number }} <span class="sr-only">(current)</span></span>
+                            </button>
+                        {% else %}
+                            <a href="?page={{ page_number }}" class="btn btn-outline-primary">
+                                {{ page_number }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}"/>
+    <script src="https://kit.fontawesome.com/49cd30108e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <noscript>
+        {% block noscript %}
+        {% endblock %}
+    </noscript>
+    <aside>
+        <img src="{% static 'main/img/logo.png' %}" alt="Лого">
+        <span class="logo">Kronos</span><br>
+    <p style="margin-top: 20%">User: {{ user }}</p>
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post" style="margin-top: 10px">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-success">Login</a> |
+        <a href="{% url 'register' %}" class="btn btn-success">Register</a>
+    {% endif %}
+        <h3>Навигация</h3>
+        <ul>
+            <a href="{% url 'home' %}"><li><i class="fa-solid fa-house"></i>Главная</li></a>
+            <a href="{% url 'players_home' %}"><li><i class="fa-solid fa-volleyball"></i>Игроки</li></a>
+            <a href="{% url 'news_home' %}"><li><i class="fa-solid fa-newspaper"></i>Новости</li></a>
+            <a href="{% url 'shop_home' %}"><li><i class="fa-solid fa-cart-shopping"></i>Магазин</li></a>
+            <a href="{% url 'about' %}"><li><i class="fa-solid fa-address-card"></i>Про нас</li></a>
+            <a href="{% url 'i' %}"><li><i class="fa-solid fa-newspaper"></i>Index</li></a>
+            {% if user.is_superuser %}
+                <a href="{% url 'create_news' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить новость</button></li></a>
+                <a href="{% url 'create_players' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить игрока</button></li></a>
+                <a href="{% url 'create_products' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить товар</button></li></a>
+            {% endif %}
+            </ul>
+    </aside>
+    <main>
+        {% block body %}
+        {% endblock %}
+        {% block script %}
+        {% endblock %}
+    </main>
+</body>
+</html>

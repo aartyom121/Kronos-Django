@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Логин{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <h1>Логин</h1>
+        <form action="{% url 'login' %}" method="post">
+            {{ form }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+    </div>
+{% endblock %}

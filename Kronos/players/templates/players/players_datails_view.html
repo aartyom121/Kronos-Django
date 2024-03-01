@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Игроки{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <h1>{{ players.surname }} {{ players.name }}</h1>
+        <p class="p-players">Игровой номер: {{ players.gaming_number }}</p>
+        <p class="p-players">Амплуа: {{ players.amplua }}</p>
+        {% if user.is_superuser %}
+            <a href="{% url 'players-update' players.id %}" class="btn btn-info">Редактировать</a>
+            <a href="{% url 'players-delete' players.id %}" class="btn btn-danger">Удалить</a>
+        {% endif %}
+    </div>
+{% endblock %}

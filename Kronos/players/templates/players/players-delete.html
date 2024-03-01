@@ -1,0 +1,13 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма для удаления игрока{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <h1>Удаление игрока</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-success" type="submit">Удалить игрока</button>
+        </form>
+    </div>
+{% endblock %}
