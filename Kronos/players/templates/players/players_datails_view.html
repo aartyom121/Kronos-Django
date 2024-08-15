@@ -7,6 +7,8 @@
         <h1>{{ players.surname }} {{ players.name }}</h1>
         <p class="p-players">Игровой номер: {{ players.gaming_number }}</p>
         <p class="p-players">Амплуа: {{ players.amplua }}</p>
+        <img src="{{ players.image.url }}" alt="{{ players.name }}" class="im" style="max-height: 250px"></br>
+        <p class="p-players" style="line-height: 1.2em">{{ players.description }} </p>
         {% if user.is_superuser %}
             <a href="{% url 'players-update' players.id %}" class="btn btn-info">Редактировать</a>
             <a href="{% url 'players-delete' players.id %}" class="btn btn-danger">Удалить</a>

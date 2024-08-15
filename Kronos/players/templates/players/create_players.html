@@ -5,12 +5,14 @@
 {% block body %}
     <div class="features">
         <h1>Добавление игрока</h1>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.name }}<br>
             {{ form.surname }}<br>
             {{ form.gaming_number }}<br>
             {{ form.amplua }}<br>
+            {{ form.description }}<br>
+            {{ form.image }}<br>
             <span>{{ error }}</span>
             <button class="btn btn-success" type="submit">Добавить игрока</button>
         </form>

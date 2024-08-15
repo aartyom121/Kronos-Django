@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Для админа{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <ul>
+            <a href="{% url 'create_news' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить новость</button></li></a>
+            <a href="{% url 'create_players' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить игрока</button></li></a>
+            <a href="{% url 'create_products' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить товар</button></li></a>
+            <a href="{% url 'create_question' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить вопрос</button></li></a>
+        </ul>
+    </div>
+{% endblock %}

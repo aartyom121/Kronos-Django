@@ -1,0 +1,90 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ AutUser.username }}{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <h1>{% if AutUser.first_name %}
+                {{ AutUser.first_name }} {{ AutUser.last_name }}
+            {% else %}
+                {{ AutUser.username }}
+            {% endif %}</h1>
+        <ul style="list-style: none">
+            <li>Имя пользователя: {{ AutUser.username }}</li>
+            <li>Адрес электронной почты: {{ AutUser.email }}</li>
+        </ul>
+        <button id="toggleButton" class="btn btn-info"> Показать/скрыть результаты тестирований</button>
+        {% for res in results %}
+        	{% if res.user == request.user %}
+                <div class="alert alert-warning container hidden">
+                    <p class="p-players hidden" >Название теста: {{ res.test_name }}</p>
+                    <p class="p-players hidden">Пользователь: {{ res.user }}</p>
+{#                    <p class="p-players">{{ res.ans1 }}</p>#}
+{#                    <p class="p-players">{{ res.ans2 }}</p>#}
+{#                    <p class="p-players">{{ res.ans3 }}</p>#}
+{#                    <p class="p-players">{{ res.ans4 }}</p>#}
+{#                    <p class="p-players">{{ res.ans5 }}</p>#}
+{#                    <p class="p-players">{{ res.ans6 }}</p>#}
+{#                    <p class="p-players">{{ res.ans7 }}</p>#}
+{#                    <p class="p-players">{{ res.ans8 }}</p>#}
+{#                    <p class="p-players">{{ res.ans9 }}</p>#}
+{#                    <p class="p-players">{{ res.ans10 }}</p>#}
+                    {% if res.res1 == '1' %}
+                        <p  style="color: green" class="hidden">1) {{ res.ans1 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">1) {{ res.ans1 }}</p>
+                    {% endif %}
+                    {% if res.res2 == '1' %}
+                        <p style="color: green" class="hidden">2) {{ res.ans2 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">2) {{ res.ans2 }}</p>
+                    {% endif %}
+                    {% if res.res3 == '1' %}
+                        <p style="color: green" class="hidden">3) {{ res.ans3 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">3) {{ res.ans3 }}</p>
+                    {% endif %}
+                    {% if res.res4 == '1' %}
+                        <p style="color: green" class="hidden">4) {{ res.ans4 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">4) {{ res.ans4 }}</p>
+                    {% endif %}
+                    {% if res.res5 == '1' %}
+                        <p style="color: green" class="hidden">5) {{ res.ans5 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">5) {{ res.ans5 }}</p>
+                    {% endif %}
+                    {% if res.res6 == '1' %}
+                        <p style="color: green" class="hidden">6) {{ res.ans6 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">6) {{ res.ans6 }}</p>
+                    {% endif %}
+                    {% if res.res7 == '1' %}
+                        <p style="color: green" class="hidden">7) {{ res.ans7 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">7) {{ res.ans7 }}</p>
+                    {% endif %}
+                    {% if res.res8 == '1' %}
+                        <p style="color: green" class="hidden">8) {{ res.ans8 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">8) {{ res.ans8 }}</p>
+                    {% endif %}
+                    {% if res.res9 == '1' %}
+                        <p style="color: green" class="hidden">9) {{ res.ans9 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">9) {{ res.ans9 }}</p>
+                    {% endif %}
+                    {% if res.res10 == '1' %}
+                        <p style="color: green" class="hidden">10) {{ res.ans10 }}</p>
+                    {% else %}
+                        <p style="color: red" class="hidden">10) {{ res.ans10 }}</p>
+                    {% endif %}
+
+                </div>
+        	{% endif %}
+        {% endfor %}
+
+    </div>
+    <script src="{% static '/main/js/btn.js' %}"></script>
+{% endblock %}

@@ -1,4 +1,7 @@
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
+from django.utils.decorators import method_decorator
+
 from .models import Players
 from .forms import PlayersForm
 from django.core.paginator import Paginator
@@ -12,6 +15,11 @@ from django.db.models import Q
 #     page_number = request.GET.get("page")
 #     page_obj = paginator.get_page(page_number)
 #     return render(request, "list.html", {"page_obj": page_obj})
+
+
+def superuser_check(user):
+    return user.is_superuser
+
 
 def players_home(request):
     players = Players.objects.all()
@@ -29,12 +37,16 @@ class PlayersDetailView(DetailView):
     context_object_name = 'players'
 
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(user_passes_test(superuser_check), name='dispatch')
 class PlayersUpdateView(UpdateView):
     model = Players
     template_name = 'players/players-update.html'
     form_class = PlayersForm
 
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(user_passes_test(superuser_check), name='dispatch')
 class PlayersDeleteView(DeleteView):
     model = Players
     template_name = 'players/players-delete.html'
@@ -42,10 +54,12 @@ class PlayersDeleteView(DeleteView):
     success_url = '/players/'
 
 
+@user_passes_test(superuser_check)
+@login_required
 def create_players(request):
     error = ''
     if request.method == 'POST':
-        form = PlayersForm(request.POST)
+        form = PlayersForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('players_home')

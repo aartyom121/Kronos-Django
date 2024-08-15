@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма для редактирования вопроса{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <h1>Редактирование вопроса</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.question }}<br>
+            {{ form.cor_ans }}<br>
+            {{ form.uncor_ans1 }}<br>
+            {{ form.uncor_ans2 }}<br>
+            {{ form.uncor_ans3 }}<br>
+            {{ form.test_number }}<br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Редактировать вопрос</button>
+        </form>
+    </div>
+{% endblock %}

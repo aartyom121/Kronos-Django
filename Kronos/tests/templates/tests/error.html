@@ -1,0 +1,13 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Ошибка{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <script>
+            var error_message = "{{ error_message }}";
+            alert(error_message);
+            window.history.back(); // Вернуться на предыдущую страницу
+        </script>
+    </div>
+{% endblock %}

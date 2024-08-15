@@ -20,32 +20,55 @@
     <aside>
         <img src="{% static 'main/img/logo.png' %}" alt="Лого">
         <span class="logo">Kronos</span><br>
-    <p style="margin-top: 20%">User: {{ user }}</p>
     {% if user.is_authenticated %}
+        <p style="margin-top: 20%">User: <a href="{% url 'UserProfile' %}">
+            {% if user.first_name %}
+                {{ user.first_name }}
+            {% else %}
+                {{ user.username }}
+            {% endif %}</a></p>
+
         <form action="{% url 'logout' %}" method="post" style="margin-top: 10px">
             {% csrf_token %}
             <button type="submit" class="btn btn-success">Logout</button>
         </form>
     {% else %}
-        <a href="{% url 'login' %}" class="btn btn-success">Login</a> |
-        <a href="{% url 'register' %}" class="btn btn-success">Register</a>
+        <br><br>
+        <dev style="display: block">
+            <a href="{% url 'login' %}" class="btn btn-success">Login</a> |
+            <a href="{% url 'register' %}" class="btn btn-success">Register</a>
+        </dev>
     {% endif %}
         <h3>Навигация</h3>
         <ul>
             <a href="{% url 'home' %}"><li><i class="fa-solid fa-house"></i>Главная</li></a>
             <a href="{% url 'players_home' %}"><li><i class="fa-solid fa-volleyball"></i>Игроки</li></a>
             <a href="{% url 'news_home' %}"><li><i class="fa-solid fa-newspaper"></i>Новости</li></a>
-            <a href="{% url 'shop_home' %}"><li><i class="fa-solid fa-cart-shopping"></i>Магазин</li></a>
+{#            <a href="{% url 'shop_home' %}"><li><i class="fa-solid fa-cart-shopping"></i>Магазин</li></a>#}
+            <a href="{% url 'tests_home' %}"><li><i class="fa-solid fa-align-justify"></i>Тесты</li></a>
             <a href="{% url 'about' %}"><li><i class="fa-solid fa-address-card"></i>Про нас</li></a>
-            <a href="{% url 'i' %}"><li><i class="fa-solid fa-newspaper"></i>Index</li></a>
+{#            <a href="{% url 'i' %}"><li><i class="fa-solid fa-newspaper"></i>Index</li></a>#}
             {% if user.is_superuser %}
-                <a href="{% url 'create_news' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить новость</button></li></a>
-                <a href="{% url 'create_players' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить игрока</button></li></a>
-                <a href="{% url 'create_products' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить товар</button></li></a>
-            {% endif %}
-            </ul>
+                <a href="#" id="for_admin"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Для администратора</button></li></a>
+                <nav id="navMenu">
+                    <ul>
+                        <a href="{% url 'create_news' %}"><li><button class="btn_for_admin btn btn-info" style="margin-top: 3px"><i class="fas fa-plus-circle"></i>Добавить новость</button></li></a>
+                        <a href="{% url 'create_players' %}"><li><button class="btn_for_admin btn btn-info" style="margin-top: 3px"><i class="fas fa-plus-circle"></i>Добавить игрока</button></li></a>
+                        <a href="{% url 'create_products' %}"><li><button class="btn_for_admin btn btn-info" style="margin-top: 3px"><i class="fas fa-plus-circle"></i>Добавить товар</button></li></a>
+                        <a href="{% url 'create_question' %}"><li><button class="btn_for_admin btn btn-info" style="margin-top: 3px"><i class="fas fa-plus-circle"></i>Добавить вопрос</button></li></a>
+                        <a href="{% url 'create_test' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить Тест</button></li></a>
+                    </ul>
+                </nav>
+{#                <a href="{% url 'create_news' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить новость</button></li></a>#}
+{#                <a href="{% url 'create_players' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить игрока</button></li></a>#}
+{#                <a href="{% url 'create_products' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить товар</button></li></a>#}
+{#                <a href="{% url 'create_question' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить вопрос</button></li></a>#}
+{#                <a href="{% url 'create_test' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить Тест</button></li></a>#}
+                {% endif %}
+        </ul>
     </aside>
     <main>
+        <script src="{% static 'main/js/navscr.js' %}"></script>
         {% block body %}
         {% endblock %}
         {% block script %}

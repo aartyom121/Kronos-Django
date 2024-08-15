@@ -1,0 +1,13 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма для удаления вопроса{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <h1>Удаление вопроса</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-success" type="submit">Удалить вопрос</button>
+        </form>
+    </div>
+{% endblock %}

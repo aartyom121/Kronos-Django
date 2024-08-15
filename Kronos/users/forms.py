@@ -39,9 +39,9 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomLoginView(LoginView):
-    username = UsernameField(widget=forms.TextInput(attrs={"autofocus": True, "class": "form-control"}))
+    username = UsernameField(widget=forms.TextInput(attrs={"autofocus": True, "class": "my-input"}))
     password = forms.CharField(
         label=_("Password"),
         strip=False,
-        widget=forms.PasswordInput(attrs={"autocomplete": "current-password", "class": "form-control"}),
+        widget=forms.PasswordInput(attrs={"autocomplete": "current-password", "class": "my-input"}),
     )

@@ -22,12 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-7$y2xx*^e84iwl=w0i0x&&txlfoizf!md*@5az!wnu7%!*3o3j'
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-7$y2xx*^e84iwl=w0i0x&&txlfoizf!md*@5az!wnu7%!*3o3j')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = '/users/login/'
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'players',
     'shop',
     'users',
+    'tests',
 ]
 
 MIDDLEWARE = [

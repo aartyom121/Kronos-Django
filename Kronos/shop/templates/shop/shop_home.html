@@ -15,14 +15,14 @@
             {% for item in page_obj.object_list %}
                 <div class="alert alert-warning">
                     <p class="p-players">Название: {{ item.name }}</p>
-                    <p class="p-players">Описание: {{ item.description }} </p>
+{#                    <p class="p-players">Описание: {{ item.description }} </p>#}
                     <p class="p-players">Цена: {{ item.price }} ₽</p>
                     <img src="{{ item.image.url }}" alt="{{ item.name }}" class="im">
                     <a href="{% url 'shop-detail' item.id %}" class="btn btn-warning" style="display: block">Подробнее</a>
                 </div>
             {% endfor %}
             {% if page_obj.has_other_pages %}
-                <div class="">
+                <div class="pag">
                     {% if page_obj.has_previous %}
                         <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
                     {% endif %}

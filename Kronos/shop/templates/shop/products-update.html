@@ -6,13 +6,14 @@
     <div class="features">
         <h1>Редактирование товара</h1>
         <form method="post">
+            {% csrf_token %}
             {{ form.name }}<br>
             {{ form.image }}<br>
             {{ form.category }}<br>
             {{ form.description }}<br>
             {{ form.price }}<br>
             <span>{{ error }}</span>
-            <button class="btn btn-success" type="submit">Редактирвоать товар</button>
+            <button class="btn btn-success" type="submit">Редактировать товар</button>
         </form>
     </div>
 {% endblock %}

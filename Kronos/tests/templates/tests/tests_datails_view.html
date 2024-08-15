@@ -1,0 +1,54 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ test.name }}{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <div class="features">
+            <h1 class="p-players">{{ test.name }}</h1>
+            <p class="p-players" style="margin-top: 4vh">Автор: {{ test.created_by.first_name }} {{ test.created_by.last_name }} </p>
+            {% if user.is_superuser %}
+                <a href="{% url 'tests-update' test.id %}" class="btn btn-info" style="margin-top: 3px">Редактировать</a>
+                <a href="{% url 'tests-delete' test.id %}" class="btn btn-danger" style="margin-top: 3px">Удалить</a>
+            {% endif %}
+            <form method="post" action="{% url 'save-results' %}">
+                {% csrf_token %}
+                <input type="hidden" name="test_name" value="{{ test.name }}"></input>
+                {% for question in questions %}
+                    <div class="alert-primary alert" style="margin-left: 10%">
+                        <p>{{ forloop.counter }}) {{ question.question }}</p>
+                        <input type="radio" name="{{ question.id }}" value="{{ question.answers.0 }}" > {{ question.answers.0 }}<br>
+                        <input type="radio" name="{{ question.id }}" value="{{ question.answers.1 }}"> {{ question.answers.1 }}<br>
+                        <input type="radio" name="{{ question.id }}" value="{{ question.answers.2 }}"> {{ question.answers.2 }}<br>
+                        <input type="radio" name="{{ question.id }}" value="{{ question.answers.3 }}"> {{ question.answers.3 }}<br>
+                        {% if user.is_superuser %}
+                            <a href="{% url 'questions-update' question.id %}" class="btn btn-info" style="margin-top: 3px">Редактировать</a>
+                            <a href="{% url 'questions-delete' question.id %}" class="btn btn-danger" style="margin-top: 3px">Удалить</a>
+                        {% endif %}
+                    </div>
+{#                    <p>{{ forloop.counter }}) {{ question.question }}</p>#}
+{#                    <input type="radio" name="{{ question.id }}" value="{{ question.answers.0 }}" > {{ question.answers.0 }}<br>#}
+{#                    <input type="radio" name="{{ question.id }}" value="{{ question.answers.1 }}"> {{ question.answers.1 }}<br>#}
+{#                    <input type="radio" name="{{ question.id }}" value="{{ question.answers.2 }}"> {{ question.answers.2 }}<br>#}
+{#                    <input type="radio" name="{{ question.id }}" value="{{ question.answers.3 }}"> {{ question.answers.3 }}<br>#}
+{#                    {% if user.is_superuser %}#}
+{#                        <a href="{% url 'questions-update' question.id %}" class="btn btn-info" style="margin-top: 3px">Редактировать</a>#}
+{#                        <a href="{% url 'questions-delete' question.id %}" class="btn btn-danger" style="margin-top: 3px">Удалить</a>#}
+{#                    {% endif %}#}
+                {% endfor %}
+                <br>
+                <button class="btn btn-success" type="submit" style="margin-top: 1vh">Закончить тест</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="features">
+            <h1 class="p-players">{{ test.name }}</h1>
+            <p class="p-players" style="margin-top: 4vh">Автор: {{ test.created_by.first_name }} {{ test.created_by.last_name }} </p>
+            <h3>Для продолжения требуется аутентификация!</h3>
+            <dev style="display: block; margin-top: 10vh">
+                <a href="{% url 'login' %}" class="btn btn-success">Login</a> |
+                <a href="{% url 'register' %}" class="btn btn-success">Register</a>
+            </dev>
+        </div>
+    {% endif %}
+{% endblock %}

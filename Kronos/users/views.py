@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.views import View
+from .models import User
+from tests.models import Results, Question
 from .forms import CustomUserCreationForm
 
 
@@ -27,3 +29,19 @@ class Register(View):
             'form': form
         }
         return render(request, self.template_name, context)
+
+
+def UserProfile(request):
+    user = User.objects.all()
+    AutUser = request.user
+    # Test = Test.objects.all()
+    Result = Results.objects.order_by('-date')
+    Questions = Question.objects.all()
+    data = {
+        'user': user,
+        'AutUser': AutUser,
+        'results': Result,
+        'Question': Questions
+    }
+ 
+    return render(request, 'users/UserProfile.html', data)

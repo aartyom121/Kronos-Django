@@ -10,7 +10,8 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('players/', include('players.urls')),
     path('shop/', include('shop.urls')),
-    path('users/', include('users.urls'))
+    path('users/', include('users.urls')),
+    path('tests/', include('tests.urls'))
     # path('accounts/', include(allauth.urls))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:

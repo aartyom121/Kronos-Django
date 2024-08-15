@@ -16,7 +16,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, verbose_name='Категория')
     description = models.TextField('Описание', blank=True)
     price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
-    image = models.ImageField('Изображение', upload_to='media/images', blank=True)
+    image = models.ImageField('Изображение', upload_to='images/shop', blank=True)
 
     def __str__(self):
         return self.name

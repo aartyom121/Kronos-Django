@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Тесты{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <h1>Тесты</h1>
+        {% if tests  %}
+            {% for el in tests %}
+                <div class="alert alert-warning">
+                    <h3>{{ el.name }}</h3>
+                    <p>Автор: {{ el.created_by.first_name }} {{ el.created_by.last_name }}</p>
+                    <a href="{% url 'test-detail' el.id %}" class="btn btn-warning">Пройти тест</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>У вас нет записей.</p>
+        {% endif %}
+
+    </div>
+{% endblock %}

@@ -10,10 +10,12 @@ class Players(models.Model):
         ('Диагональный', 'Диагональный'),
         ('Либеро', 'Либеро'),
     )
-    name = models.CharField('Имя',max_length=15)
+    name = models.CharField('Имя', max_length=15)
     surname = models.CharField('Фамилия', max_length=15)
     gaming_number = models.IntegerField('Игровой номер')
     amplua = models.CharField('Амплуа', max_length=40, choices=amplua_choices)
+    image = models.ImageField('Изображение', upload_to='images/players', blank=True)
+    description = models.TextField('Описание', blank=True)
 
     def __str__(self):
         return self.surname

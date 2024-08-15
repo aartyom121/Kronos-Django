@@ -1,12 +1,12 @@
 from .models import Players
-from django.forms import ModelForm, TextInput, NumberInput
+from django.forms import ModelForm, TextInput, NumberInput, Textarea
 from django import forms
 
 
 class PlayersForm(ModelForm):
     class Meta:
         model = Players
-        fields = ['name', 'surname', 'gaming_number', 'amplua']
+        fields = ['name', 'surname', 'gaming_number', 'amplua', 'image', 'description']
 
         widgets = {
             "name": TextInput(attrs={
@@ -27,6 +27,10 @@ class PlayersForm(ModelForm):
             'amplua': forms.Select(attrs={
                 'class': 'form-control'
             }),
+            "description": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Описание игрока'
+            })
         }
 
     def clean_amplua(self):

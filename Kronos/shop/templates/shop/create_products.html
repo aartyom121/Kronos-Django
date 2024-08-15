@@ -5,7 +5,7 @@
 {% block body %}
     <div class="features">
         <h1>Добавление товара</h1>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.name }}<br>
             {{ form.category }}<br>

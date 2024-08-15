@@ -14,11 +14,6 @@ class ProductsForm(ModelForm):
                 'placeholder': 'Название',
                 # 'pattern': '[A-Za-zА-Яа-яЁё]+'
             }),
-            # "surname": TextInput(attrs={
-            #     'class': 'form-control',
-            #     'placeholder': 'Фамилия',
-            #     'pattern': '[A-Za-zА-Яа-яЁё]+'
-            # }),
             'category': forms.Select(attrs={
                 'class': 'form-control'
             }),

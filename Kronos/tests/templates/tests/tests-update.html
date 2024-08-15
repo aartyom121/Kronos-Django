@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма для редактирования теста{% endblock %}
+
+{% block body %}
+    <div class="features">
+        <h1>Редактирование тест</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.name }}<br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Редактировать тест</button>
+        </form>
+    </div>
+{% endblock %}
