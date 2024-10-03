@@ -1,0 +1,211 @@
+{% load static %}
+
+
+body{
+    background: #2c2c2c;
+    /*background-image: url("/static/main/img/fon.jpg");*/
+}
+
+aside{
+    float: left;
+    background: #181818;
+    width: 20%;
+    padding: 2.5%;
+    height: 100vh;
+    position: fixed;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+aside::-webkit-scrollbar {
+    width: 8px;
+}
+
+aside::-webkit-scrollbar-track {
+    background: #181818;
+}
+
+aside::-webkit-scrollbar-thumb {
+    background: #7BA7AB;
+    border-radius: 6px;
+}
+
+aside::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}
+
+aside img{
+    width: 80px;
+    float: left;
+}
+
+aside .logo{
+    font-size: 30px;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+    top: 15px;
+}
+aside h3 {
+    margin-top: 20px;
+    font-size: 28px;
+}
+
+aside ul{list-style: none}
+aside ul li{
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    transition: transform .3s ease;
+}
+
+aside ul li:hover, aside ul a:hover{
+    color: #eb5959;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+aside ul a{
+    text-decoration: none;
+}
+
+main .features{
+    float: left;
+    color: white;
+    margin-top: 100px;
+    margin-left: 300px;
+    text-align: center;
+    width: 75%;
+}
+
+main .features h1{font-size: 50px}
+main .features p{max-width: 400px; margin: 20px auto}
+
+.alert-warning, .alert-primary{
+    float: left;
+    clear: both;
+    margin: 20px 34%;
+    text-align: left;
+    width: 400px;
+}
+
+.p-players{
+    line-height: 0.7em;
+    margin-bottom: -10px;
+}
+
+form{
+    margin-left: 30%;
+    width: 500px;
+    margin-top: 50px;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid black;
+}
+
+.search-shop {
+    width: 450px;
+    height: 50px;
+    border-radius: 5px 0 0 5px;
+    margin-left: 9%;
+}
+
+.btn-shop{
+
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 47px;
+  border: none;
+  background: #7BA7AB;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.btn-shop:before {
+  content: "\f002";
+  font-family: FontAwesome;
+  font-size: 16px;
+  color: #F9F0DA;
+}
+
+.btn-shop:hover{
+   transform: scale(1.05);
+}
+
+.im {
+    max-height:150px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.logout {
+    float: left;
+    color: white;
+    margin-top: 100px;
+    margin-left: 300px;
+    text-align: left;
+    width: 75%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+#navButton {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.pag {
+    clear: both;
+    text-align: center;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+.feat2{
+    text-align: left;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.feat2 a{
+    text-decoration: none;
+    color: greenyellow;
+
+}
+
+.feat2 li:before{
+    transition: transform .3s ease;
+}
+
+.feat2 a:hover{
+    transform: scale(1.05);
+}
